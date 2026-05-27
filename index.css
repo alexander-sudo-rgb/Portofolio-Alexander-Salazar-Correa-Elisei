@@ -48,6 +48,9 @@ body {
 
 .bento-item {
     border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1.5rem;
     cursor: pointer;
     position: relative;
@@ -74,9 +77,9 @@ body {
 .bg-blue { background-color: var(--blue); color: var(--text-dark); }
 
 .img-container {
-    height: 65%;
-    width: 100%;
-    border-radius: 16px;
+    height: 30%;
+    width: 50%;
+    border-radius: 50px;
     overflow: hidden;
     margin-bottom: 1rem;
 }
