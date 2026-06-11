@@ -3,147 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexander Slazar</title>
-<link rel="stylesheet" href="index.css">
-
+<title>Alexander Salazar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="main-wrapper">
-    <div class="bento-container">
-        
-        <div class="bento-item span-2-row bg-mint" data-target="moi">
-            <div class="img-container">
-                <img src="images/image_2026-02-27_133108144_magicstudio_4n4zb8lvlb4.png" alt="Me">
-            </div>
-            <div class="content-bottom">
-                <h2>My Profile</h2>
-                <p>Dev & Cybersecurity</p>
-            </div>
-        </div>
+<canvas id="bg"></canvas>
 
-        <div class="bento-item bg-purple" data-target="epitech">
-            <div class="badge badge-light">My school</div>
-            <h2>Epitech</h2>
-            <p>The school of innovation.</p>
-        </div>
-
-        <div class="bento-item span-2-col span-2-row bg-orange" data-target="projets">
-            <h2 class="big-title">My Projects</h2>
-            <p class="subtitle">Achievements & Source code</p>
-            <div class="chart-mockup">
-                <div class="bar h-60"></div>
-                <div class="bar h-80"></div>
-                <div class="bar h-40"></div>
-                <div class="bar h-100"></div>
-                <div class="bar h-70"></div>
-            </div>
-        </div>
-
-        <div class="bento-item bg-yellow" data-target="skills">
-            <h2>My Skills</h2>
-            <div class="pill-container">
-                <span class="pill">Python</span>
-                <span class="pill">C++</span>
-                <span class="pill">SQL</span>
-            </div>
-        </div>
-
-        <div class="bento-item bg-dark" data-target="bilan">
-            <div class="badge badge-mint">2026</div>
-            <h2>Review</h2>
-            <p>My progress. First year</p>
-        </div>
-
-        <div class="bento-item bg-pink" data-target="cv">
-            <div class="center-content">
-                <h2>Resume</h2>
-                <button class="action-btn-light">Download</button>
-            </div>
-        </div>
-
-        <div class="bento-item span-2-col bg-blue" data-target="contact">
-            <h2>Contact & Networks</h2>
-            <p>GitHub, LinkedIn, Email, contact form</p>
-            <div class="social-icons">
-                <span class="icon-circle">GH</span>
-                <span class="icon-circle">IN</span>
-                <span class="icon-circle">@</span>
-            </div>
-        </div>
-
-    </div>
+<!-- ── LOADER ── -->
+<div id="loader">
+  <p class="loader-name">Alexander Salazar</p>
+  <p class="loader-sub">Dev &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Epitech</p>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <button id="loader-enter" class="loader-enter">ENTER</button>
 </div>
 
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <button class="close-btn" id="close-btn">&times;</button>
-        <div id="modal-body"></div>
-    </div>
+<button class="music-btn" id="musicBtn" aria-label="Toggle ambient music">♪</button>
+
+<!-- ── HOME ── -->
+<div id="home" class="view">
+  <div class="home-center">
+    <h1 class="main-name">ALEXANDER<br>SALAZAR</h1>
+    <p class="main-tagline">DEV &nbsp;·&nbsp; CYBERSECURITY &nbsp;·&nbsp; EPITECH</p>
+  </div>
 </div>
 
-<div class="hidden-data">
-    <div id="content-moi">
-        <h2>About me</h2>
-        <p>First-year student at Epitech, programming and cybersecurity are at the center of my life right now. I enjoy testing infrastructure security and working on group projects.</p>
-    </div>
-
-    <div id="content-epitech">
-        <h2>Epitech</h2>
-        <p>Epitech is a computer science school based on project-based learning (PBL). It trains students in autonomy, pragmatism, and complex problem solving.</p>
-    </div>
-
-    <div id="content-skills">
-        <h2>My Skills</h2>
-        <ul>
-            <li><strong>Web Development:</strong> HTML, CSS, JavaScript, TailwindCSS</li>
-            <li><strong>Programming:</strong> Python, SQL, C++</li>
-            <li><strong>Tools & Environment:</strong> Git, VS Code, Linux (Ubuntu)</li>
-            <li><strong>Cybersecurity:</strong> Burp Suite, WireShark, Metasploit</li>
-        </ul>
-    </div>
-
-    <div id="content-projets">
-        <h2>My Projects</h2>
-        <div class="project-box">
-            <h3>Pen Testing with Juice Shop</h3>
-            <p>A team project I had the opportunity to work on. It includes security training, awareness demonstrations, CTF competitions, and security tool testing.</p>
-            <a href="https://github.com/alexander-sudo-rgb/Pen-Testing-with-juice-shop" target="_blank" class="action-btn-dark" style="text-decoration:none; display:inline-block; margin-top:10px;">View GitHub Repo</a>
-        </div>
-        <div class="project-box">
-            <h3>Hackathon 2026</h3>
-            <p>This project involves building an online tool to assess the environmental performance of municipalities, turning complex climate data (from ADEME and Enedis) into simple visual indicators for the general public.</p>
-            <a href="https://github.com/alexander-sudo-rgb/Poduct-Design-Hackathon" target="_blank" class="action-btn-dark" style="text-decoration:none; display:inline-block; margin-top:10px;">View GitHub Repo</a>
-        </div>
-        <div class="project-box">
-            <h3>TARDIS SNCF Delay Prediction</h3>
-            <p>A machine learning project aimed at analyzing historical data and predicting SNCF train delays using an interactive Streamlit dashboard.</p>
-            <a href="https://github.com/alexander-sudo-rgb/Poduct-Design-Hackathon" target="_blank" class="action-btn-dark" style="text-decoration:none; display:inline-block; margin-top:10px;">View GitHub Repo</a>
-        </div>
-    </div>
-
-    <div id="content-bilan">
-        <h2>First Year Review</h2>
-        <p>This year allowed me to build a solid algorithmic foundation and develop a real affinity for group work as well as complex, long-term projects. Learning by doing has made me much more independent.</p>
-    </div>
-
-    <div id="content-contact">
-        <h2>Contact Me</h2>
-        <ul>
-            <li><strong>GitHub:</strong> <a href="https://github.com/alexander-sudo-rgb">github.com/profile</a></li>
-            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alexander-salazar-2934a1386/">linkedin.com/in/profile</a></li>
-            <li><strong>Email:</strong> alexander.salazar-correa-elisei@epitech.eu</li>
-            <li><strong>Contact form:</strong><script type="text/javascript" src="https://form.jotform.com/jsform/261453416588060"></script></li>
-        </ul>
-    </div>
-
-    <div id="content-cv">
-        <h2>Resume</h2>
-        <p>Download my full background in PDF format.</p>
-        <a href="cv/CV professionnel noir simple (4).pdf" download class="action-btn-dark" style="text-decoration:none; display:inline-block; margin-top:10px;">Download Resume</a>
-    </div>
+<!-- ── SECTION VIEW ── -->
+<div id="section-view" class="view">
+  <div id="sectionBody"></div>
 </div>
 
-<script src="index.js"></script>
+<!-- ── NAV GLOBALE (bas de page, toujours visible) ── -->
+<nav id="global-nav" class="global-nav">
+  <button class="nav-btn home-btn" data-target="home">HOME</button>
+  <button class="nav-btn" data-target="about">ABOUT</button>
+  <button class="nav-btn" data-target="skills">SKILLS</button>
+  <button class="nav-btn" data-target="projects">PROJECTS</button>
+  <button class="nav-btn" data-target="contact">CONTACT</button>
+</nav>
+
+<!-- ── TEMPLATES (hidden) ── -->
+<template id="tpl-about">
+  <div class="s-title-wrap">
+    <h2 class="s-title">ABOUT</h2>
+    <p class="s-subtitle">EPITECH &nbsp;·&nbsp; PARIS &nbsp;·&nbsp; 2025 — 2026</p>
+  </div>
+  <div class="s-content about-content">
+    <p class="about-p">First-year student at <span class="hl">Epitech</span>, deeply into <span class="hl">programming</span> and <span class="hl">cybersecurity</span>. I love testing infrastructure security and tackling complex, challenging projects with a team.</p>
+    <p class="about-p">Hands-on learner. I build things, break things, and learn from both.</p>
+    <div class="about-tags">
+      <span class="a-tag">EPITECH 1ST YEAR</span>
+      <span class="a-tag">PENTESTING</span>
+      <span class="a-tag">FULL STACK</span>
+      <span class="a-tag">LINUX</span>
+      <span class="a-tag">CTF</span>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-skills">
+  <div class="s-title-wrap">
+    <h2 class="s-title">SKILLS</h2>
+    <p class="s-subtitle">WEB &nbsp;·&nbsp; PROGRAMMING &nbsp;·&nbsp; CYBERSEC &nbsp;·&nbsp; TOOLS</p>
+  </div>
+  <div class="s-content skills-content">
+    <div class="skill-row">
+      <p class="skill-cat">Web Development</p>
+      <p class="skill-items">HTML &nbsp;— CSS &nbsp;— JavaScript &nbsp;— TailwindCSS</p>
+    </div>
+    <div class="skill-row">
+      <p class="skill-cat">Programming</p>
+      <p class="skill-items">Python &nbsp;— C++ &nbsp;— SQL</p>
+    </div>
+    <div class="skill-row">
+      <p class="skill-cat">Cybersecurity</p>
+      <p class="skill-items">Burp Suite &nbsp;— WireShark &nbsp;— Metasploit</p>
+    </div>
+    <div class="skill-row">
+      <p class="skill-cat">Tools &amp; Env</p>
+      <p class="skill-items">Git &nbsp;— VS Code &nbsp;— Linux (Ubuntu)</p>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-projects">
+  <div class="s-title-wrap">
+    <h2 class="s-title">PROJECTS</h2>
+    <p class="s-subtitle">PENTEST &nbsp;·&nbsp; HACKATHON &nbsp;·&nbsp; MACHINE LEARNING</p>
+  </div>
+  <div class="s-content projects-content">
+    <a href="https://github.com/alexander-sudo-rgb/Pen-Testing-with-juice-shop" target="_blank" class="proj-item">
+      <div class="proj-thumb" style="background:linear-gradient(140deg,#000d1a 0%,#002a42 60%,#004d70 100%)">
+        <div class="proj-glow" style="background:radial-gradient(ellipse at 40% 60%,rgba(0,140,200,.55) 0%,transparent 65%)"></div>
+      </div>
+      <p class="proj-label">SECURITY</p>
+      <h3 class="proj-name">Pen Testing<br>with Juice Shop</h3>
+      <p class="proj-desc">Security training, CTF competitions and pentesting on OWASP Juice Shop.</p>
+    </a>
+    <a href="https://github.com/alexander-sudo-rgb/Poduct-Design-Hackathon" target="_blank" class="proj-item">
+      <div class="proj-thumb" style="background:linear-gradient(140deg,#000f08 0%,#003018 60%,#005c2e 100%)">
+        <div class="proj-glow" style="background:radial-gradient(ellipse at 55% 65%,rgba(0,190,90,.5) 0%,transparent 65%)"></div>
+      </div>
+      <p class="proj-label">HACKATHON</p>
+      <h3 class="proj-name">Hackathon<br>2026</h3>
+      <p class="proj-desc">Environmental performance tool for municipalities using ADEME &amp; Enedis data.</p>
+    </a>
+    <a href="https://github.com/alexander-sudo-rgb/Poduct-Design-Hackathon" target="_blank" class="proj-item">
+      <div class="proj-thumb" style="background:linear-gradient(140deg,#110400 0%,#3a0c00 60%,#6b1500 100%)">
+        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(220,60,0,.55) 0%,transparent 65%)"></div>
+      </div>
+      <p class="proj-label">MACHINE LEARNING</p>
+      <h3 class="proj-name">TARDIS —<br>SNCF Delays</h3>
+      <p class="proj-desc">ML project predicting SNCF train delays with an interactive Streamlit dashboard.</p>
+    </a>
+    <a href="https://lena-fawn.vercel.app" target="_blank" class="proj-item">
+      <div class="proj-thumb" style="background:linear-gradient(140deg,#000000 0%,#2c2c2c 60%,#242424 100%)">
+        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(168, 91, 3, 0.55) 0%,transparent 65%)"></div>
+      </div>
+      <p class="proj-label">showcase website</p>
+      <h3 class="proj-name">Lena —<br></h3>
+      <p class="proj-desc">just a regular website.</p>
+    </a>
+    <a href="https://obsidian-mu-six.vercel.app" target="_blank" class="proj-item">
+      <div class="proj-thumb" style="background:linear-gradient(140deg,#000000 0%,#2c2c2c 60%,#242424 100%)">
+        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(137, 3, 146, 0.55) 0%,transparent 65%)"></div>
+      </div>
+      <p class="proj-label">Obsidian</p>
+      <h3 class="proj-name">Obsidian —<br></h3>
+      <p class="proj-desc">just a regular website.</p>
+    </a>
+    <a href="https://nexflow-zeta.vercel.app" target="_blank" class="proj-item">
+      <div class="proj-thumb" style="background:linear-gradient(140deg,#000000 0%,#2c2c2c 60%,#242424 100%)">
+        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(220,60,0,.55) 0%,transparent 65%)"></div>
+      </div>
+      <p class="proj-label">Nexflow</p>
+      <h3 class="proj-name">Nexflow —<br></h3>
+      <p class="proj-desc">just a regular website.</p>
+    </a>
+  </div>
+</template>
+
+<template id="tpl-contact">
+  <div class="s-title-wrap">
+    <h2 class="s-title">CONTACT</h2>
+    <p class="s-subtitle">GET IN TOUCH &nbsp;·&nbsp; LET'S CONNECT</p>
+  </div>
+  <div class="s-content contact-content">
+    <a href="https://github.com/alexander-sudo-rgb" target="_blank" class="contact-row">
+      <span class="contact-label">GITHUB</span>
+      <span class="contact-val">github.com/alexander-sudo-rgb</span>
+    </a>
+    <a href="https://www.linkedin.com/in/alexander-salazar-2934a1386/" target="_blank" class="contact-row">
+      <span class="contact-label">LINKEDIN</span>
+      <span class="contact-val">linkedin.com/in/alexander-salazar</span>
+    </a>
+    <a href="mailto:alexander.salazar-correa-elisei@epitech.eu" class="contact-row">
+      <span class="contact-label">EMAIL</span>
+      <span class="contact-val">alexander.salazar-correa-elisei@epitech.eu</span>
+    </a>
+    <a href="cv/Resume.pdf" download class="contact-row">
+      <span class="contact-label">RESUME</span>
+      <span class="contact-val">Download PDF &nbsp;↓</span>
+    </a>
+  </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
