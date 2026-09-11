@@ -19,19 +19,19 @@ const geometries = [
     new THREE.CircleGeometry(0.6, 6)
 ];
 
-const material = new THREE.MeshBasicMaterial({ 
+let material = new THREE.MeshBasicMaterial({ 
     color: 0xd92525, 
     side: THREE.DoubleSide, 
     transparent: true, 
     opacity: 0.7 
 });
 
-for (let i = 0; i < 60; i++) {
+for (let i = 0; i < 90; i++) {
     const geo = geometries[Math.floor(Math.random() * geometries.length)];
     const mesh = new THREE.Mesh(geo, material);
     mesh.position.set(
+        (Math.random() - 0.5) * 60,
         (Math.random() - 0.5) * 40,
-        (Math.random() - 0.5) * 25,
         (Math.random() - 0.5) * 10
     );
     mesh.rotation.set(
@@ -41,8 +41,8 @@ for (let i = 0; i < 60; i++) {
     );
     mesh.userData = {
         velocity: new THREE.Vector3(
-            (Math.random() - 0.5) * 0.05, 
-            (Math.random() - 0.5) * 0.05, 
+            (Math.random() - 0.5) * 0.06, 
+            (Math.random() - 0.5) * 0.06, 
             (Math.random() - 0.5) * 0.01
         ),
         rotSpeed: new THREE.Vector3(
@@ -63,6 +63,8 @@ const mouseVector = new THREE.Vector2();
 let draggedObj = null;
 let dragPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 let lastDragPos = new THREE.Vector3();
+let magnetActive = false;
+let mouseWorldPos = new THREE.Vector3();
 
 window.addEventListener('mousemove', (e) => {
     mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -71,8 +73,10 @@ window.addEventListener('mousemove', (e) => {
     mouseVector.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouseVector.y = -(e.clientY / window.innerHeight) * 2 + 1;
 
+    raycaster.setFromCamera(mouseVector, camera);
+    raycaster.ray.intersectPlane(dragPlane, mouseWorldPos);
+
     if (draggedObj) {
-        raycaster.setFromCamera(mouseVector, camera);
         let currentDragPos = new THREE.Vector3();
         if (raycaster.ray.intersectPlane(dragPlane, currentDragPos)) {
             let delta = currentDragPos.clone().sub(lastDragPos);
@@ -84,7 +88,14 @@ window.addEventListener('mousemove', (e) => {
 });
 
 window.addEventListener('mousedown', (e) => {
-    if (e.target.tagName !== 'CANVAS') return;
+    if (e.target.closest('.s-content') || e.target.closest('.global-nav') || e.target.closest('.top-controls') || e.target.closest('.home-center') || e.target.closest('#loader')) return;
+    
+    if (e.button === 1) {
+        e.preventDefault();
+        magnetActive = true;
+        return;
+    }
+
     mouseVector.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouseVector.y = -(e.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouseVector, camera);
@@ -94,10 +105,50 @@ window.addEventListener('mousedown', (e) => {
         dragPlane.setFromNormalAndCoplanarPoint(camera.getWorldDirection(dragPlane.normal), draggedObj.position);
         raycaster.ray.intersectPlane(dragPlane, lastDragPos);
     }
+}, {passive: false});
+
+window.addEventListener('mouseup', (e) => { 
+    if (e.button === 1) {
+        magnetActive = false;
+    }
+    draggedObj = null; 
 });
 
-window.addEventListener('mouseup', () => { draggedObj = null; });
-window.addEventListener('mouseleave', () => { draggedObj = null; });
+window.addEventListener('mouseleave', () => { 
+    magnetActive = false;
+    draggedObj = null; 
+});
+
+window.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.s-content') || e.target.closest('.global-nav') || e.target.closest('.top-controls') || e.target.closest('.home-center') || e.target.closest('#loader')) return;
+    
+    mouseVector.x = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+    mouseVector.y = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouseVector, camera);
+    const intersects = raycaster.intersectObjects(shapes);
+    if (intersects.length > 0) {
+        draggedObj = intersects[0].object;
+        dragPlane.setFromNormalAndCoplanarPoint(camera.getWorldDirection(dragPlane.normal), draggedObj.position);
+        raycaster.ray.intersectPlane(dragPlane, lastDragPos);
+    }
+}, {passive: false});
+
+window.addEventListener('touchmove', (e) => {
+    if (draggedObj) {
+        mouseVector.x = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+        mouseVector.y = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+        raycaster.setFromCamera(mouseVector, camera);
+        let currentDragPos = new THREE.Vector3();
+        if (raycaster.ray.intersectPlane(dragPlane, currentDragPos)) {
+            let delta = currentDragPos.clone().sub(lastDragPos);
+            draggedObj.position.add(delta);
+            draggedObj.userData.velocity.copy(delta).multiplyScalar(0.8);
+            lastDragPos.copy(currentDragPos);
+        }
+    }
+}, {passive: false});
+
+window.addEventListener('touchend', () => { draggedObj = null; });
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -116,16 +167,24 @@ function animate() {
         s1.rotation.y += s1.userData.rotSpeed.y;
         s1.rotation.z += s1.userData.rotSpeed.z;
 
+        if (magnetActive && s1 !== draggedObj) {
+            let dir = new THREE.Vector3().subVectors(mouseWorldPos, s1.position);
+            if (dir.length() > 0.5) {
+                dir.normalize();
+                s1.userData.velocity.add(dir.multiplyScalar(0.015));
+            }
+        }
+
         if (s1 !== draggedObj) {
             s1.position.add(s1.userData.velocity);
             s1.userData.velocity.multiplyScalar(0.998);
 
-            if (s1.position.x > 25) { s1.position.x = 25; s1.userData.velocity.x *= -1; }
-            if (s1.position.x < -25) { s1.position.x = -25; s1.userData.velocity.x *= -1; }
-            if (s1.position.y > 15) { s1.position.y = 15; s1.userData.velocity.y *= -1; }
-            if (s1.position.y < -15) { s1.position.y = -15; s1.userData.velocity.y *= -1; }
-            if (s1.position.z > 5) { s1.position.z = 5; s1.userData.velocity.z *= -1; }
-            if (s1.position.z < -10) { s1.position.z = -10; s1.userData.velocity.z *= -1; }
+            if (s1.position.x > 38) { s1.position.x = 38; s1.userData.velocity.x *= -1; }
+            if (s1.position.x < -38) { s1.position.x = -38; s1.userData.velocity.x *= -1; }
+            if (s1.position.y > 22) { s1.position.y = 22; s1.userData.velocity.y *= -1; }
+            if (s1.position.y < -22) { s1.position.y = -22; s1.userData.velocity.y *= -1; }
+            if (s1.position.z > 8) { s1.position.z = 8; s1.userData.velocity.z *= -1; }
+            if (s1.position.z < -12) { s1.position.z = -12; s1.userData.velocity.z *= -1; }
         }
 
         for (let j = i + 1; j < shapes.length; j++) {
