@@ -1,61 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexander Salazar</title>
+<title>Alexander Salazar - Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <canvas id="bg"></canvas>
 
-<!-- ── LOADER ── -->
+<audio id="bgMusic" src="leberch-classical-584480.mp3" loop></audio>
+
 <div id="loader">
   <p class="loader-name">Alexander Salazar</p>
-  <p class="loader-sub">Dev &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Epitech</p>
+  <p class="loader-sub">Dév &nbsp;·&nbsp; Cybersécurité &nbsp;·&nbsp; Epitech</p>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-  <button id="loader-enter" class="loader-enter">ENTER</button>
+  <button id="loader-enter" class="loader-enter">ENTRER</button>
 </div>
 
-<button class="music-btn" id="musicBtn" aria-label="Toggle ambient music">♪</button>
+<div class="top-controls">
+  <button class="ctrl-btn" id="musicBtn" aria-label="Musique">♪</button>
+  <button class="ctrl-btn" id="themeBtn" aria-label="Thème">◐</button>
+</div>
 
-<!-- ── HOME ── -->
 <div id="home" class="view">
   <div class="home-center">
     <h1 class="main-name">ALEXANDER<br>SALAZAR</h1>
-    <p class="main-tagline">DEV &nbsp;·&nbsp; CYBERSECURITY &nbsp;·&nbsp; EPITECH</p>
+    <p class="main-tagline">DÉV &nbsp;·&nbsp; CYBERSÉCURITÉ &nbsp;·&nbsp; EPITECH</p>
   </div>
 </div>
 
-<!-- ── SECTION VIEW ── -->
 <div id="section-view" class="view">
   <div id="sectionBody"></div>
 </div>
 
-<!-- ── NAV GLOBALE (bas de page, toujours visible) ── -->
 <nav id="global-nav" class="global-nav">
-  <button class="nav-btn home-btn" data-target="home">HOME</button>
-  <button class="nav-btn" data-target="about">ABOUT</button>
-  <button class="nav-btn" data-target="skills">SKILLS</button>
-  <button class="nav-btn" data-target="projects">PROJECTS</button>
+  <button class="nav-btn" data-target="home">ACCUEIL</button>
+  <button class="nav-btn" data-target="about">À PROPOS</button>
+  <button class="nav-btn" data-target="skills">COMPÉTENCES</button>
+  <button class="nav-btn" data-target="projects">PROJETS</button>
   <button class="nav-btn" data-target="contact">CONTACT</button>
 </nav>
 
-<!-- ── TEMPLATES (hidden) ── -->
 <template id="tpl-about">
   <div class="s-title-wrap">
-    <h2 class="s-title">ABOUT</h2>
+    <h2 class="s-title">À PROPOS</h2>
     <p class="s-subtitle">EPITECH &nbsp;·&nbsp; PARIS &nbsp;·&nbsp; 2025 — 2026</p>
   </div>
   <div class="s-content about-content">
-    <p class="about-p">First-year student at <span class="hl">Epitech</span>, deeply into <span class="hl">programming</span> and <span class="hl">cybersecurity</span>. I love testing infrastructure security and tackling complex, challenging projects with a team.</p>
-    <p class="about-p">Hands-on learner. I build things, break things, and learn from both.</p>
+    <p class="about-p">Étudiant en première année à <span class="hl">Epitech</span>, passionné par la <span class="hl">programmation</span> et la <span class="hl">cybersécurité</span>. J'aime tester la sécurité des infrastructures et relever des défis complexes en équipe.</p>
+    <p class="about-p">J'apprends par la pratique. Je construis, je casse, et j'apprends des deux.</p>
     <div class="about-tags">
-      <span class="a-tag">EPITECH 1ST YEAR</span>
+      <span class="a-tag">EPITECH 1ÈRE ANNÉE</span>
       <span class="a-tag">PENTESTING</span>
       <span class="a-tag">FULL STACK</span>
       <span class="a-tag">LINUX</span>
@@ -66,24 +66,24 @@
 
 <template id="tpl-skills">
   <div class="s-title-wrap">
-    <h2 class="s-title">SKILLS</h2>
-    <p class="s-subtitle">WEB &nbsp;·&nbsp; PROGRAMMING &nbsp;·&nbsp; CYBERSEC &nbsp;·&nbsp; TOOLS</p>
+    <h2 class="s-title">COMPÉTENCES</h2>
+    <p class="s-subtitle">WEB &nbsp;·&nbsp; PROGRAMMATION &nbsp;·&nbsp; CYBERSÉCURITÉ &nbsp;·&nbsp; OUTILS</p>
   </div>
   <div class="s-content skills-content">
     <div class="skill-row">
-      <p class="skill-cat">Web Development</p>
+      <p class="skill-cat">Développement Web</p>
       <p class="skill-items">HTML &nbsp;— CSS &nbsp;— JavaScript &nbsp;— TailwindCSS</p>
     </div>
     <div class="skill-row">
-      <p class="skill-cat">Programming</p>
+      <p class="skill-cat">Programmation</p>
       <p class="skill-items">Python &nbsp;— C++ &nbsp;— SQL</p>
     </div>
     <div class="skill-row">
-      <p class="skill-cat">Cybersecurity</p>
+      <p class="skill-cat">Cybersécurité</p>
       <p class="skill-items">Burp Suite &nbsp;— WireShark &nbsp;— Metasploit</p>
     </div>
     <div class="skill-row">
-      <p class="skill-cat">Tools &amp; Env</p>
+      <p class="skill-cat">Outils &amp; Env.</p>
       <p class="skill-items">Git &nbsp;— VS Code &nbsp;— Linux (Ubuntu)</p>
     </div>
   </div>
@@ -91,57 +91,51 @@
 
 <template id="tpl-projects">
   <div class="s-title-wrap">
-    <h2 class="s-title">PROJECTS</h2>
+    <h2 class="s-title">PROJETS</h2>
     <p class="s-subtitle">PENTEST &nbsp;·&nbsp; HACKATHON &nbsp;·&nbsp; MACHINE LEARNING</p>
   </div>
   <div class="s-content projects-content">
     <a href="https://github.com/alexander-sudo-rgb/Pen-Testing-with-juice-shop" target="_blank" class="proj-item">
       <div class="proj-thumb" style="background:linear-gradient(140deg,#000d1a 0%,#002a42 60%,#004d70 100%)">
-        <div class="proj-glow" style="background:radial-gradient(ellipse at 40% 60%,rgba(0,140,200,.55) 0%,transparent 65%)"></div>
       </div>
-      <p class="proj-label">SECURITY</p>
-      <h3 class="proj-name">Pen Testing<br>with Juice Shop</h3>
-      <p class="proj-desc">Security training, CTF competitions and pentesting on OWASP Juice Shop.</p>
+      <p class="proj-label">SÉCURITÉ</p>
+      <h3 class="proj-name">Pen Testing<br>avec Juice Shop</h3>
+      <p class="proj-desc">Formation en sécurité, compétitions CTF et pentesting sur OWASP Juice Shop.</p>
     </a>
     <a href="https://github.com/alexander-sudo-rgb/Poduct-Design-Hackathon" target="_blank" class="proj-item">
       <div class="proj-thumb" style="background:linear-gradient(140deg,#000f08 0%,#003018 60%,#005c2e 100%)">
-        <div class="proj-glow" style="background:radial-gradient(ellipse at 55% 65%,rgba(0,190,90,.5) 0%,transparent 65%)"></div>
       </div>
       <p class="proj-label">HACKATHON</p>
       <h3 class="proj-name">Hackathon<br>2026</h3>
-      <p class="proj-desc">Environmental performance tool for municipalities using ADEME &amp; Enedis data.</p>
+      <p class="proj-desc">Outil de performance environnementale pour les municipalités avec les données ADEME &amp; Enedis.</p>
     </a>
     <a href="https://github.com/alexander-sudo-rgb/Poduct-Design-Hackathon" target="_blank" class="proj-item">
       <div class="proj-thumb" style="background:linear-gradient(140deg,#110400 0%,#3a0c00 60%,#6b1500 100%)">
-        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(220,60,0,.55) 0%,transparent 65%)"></div>
       </div>
       <p class="proj-label">MACHINE LEARNING</p>
       <h3 class="proj-name">TARDIS —<br>SNCF Delays</h3>
-      <p class="proj-desc">ML project predicting SNCF train delays with an interactive Streamlit dashboard.</p>
+      <p class="proj-desc">Projet ML prédisant les retards de trains SNCF avec un dashboard interactif Streamlit.</p>
     </a>
     <a href="https://lena-fawn.vercel.app" target="_blank" class="proj-item">
       <div class="proj-thumb" style="background:linear-gradient(140deg,#000000 0%,#2c2c2c 60%,#242424 100%)">
-        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(168, 91, 3, 0.55) 0%,transparent 65%)"></div>
       </div>
-      <p class="proj-label">showcase website</p>
+      <p class="proj-label">SITE VITRINE</p>
       <h3 class="proj-name">Lena —<br></h3>
-      <p class="proj-desc">just a regular website.</p>
+      <p class="proj-desc">Site web de présentation classique.</p>
     </a>
     <a href="https://obsidian-mu-six.vercel.app" target="_blank" class="proj-item">
       <div class="proj-thumb" style="background:linear-gradient(140deg,#000000 0%,#2c2c2c 60%,#242424 100%)">
-        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(137, 3, 146, 0.55) 0%,transparent 65%)"></div>
       </div>
       <p class="proj-label">Obsidian</p>
       <h3 class="proj-name">Obsidian —<br></h3>
-      <p class="proj-desc">just a regular website.</p>
+      <p class="proj-desc">Site web de présentation classique.</p>
     </a>
     <a href="https://nexflow-zeta.vercel.app" target="_blank" class="proj-item">
       <div class="proj-thumb" style="background:linear-gradient(140deg,#000000 0%,#2c2c2c 60%,#242424 100%)">
-        <div class="proj-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(220,60,0,.55) 0%,transparent 65%)"></div>
       </div>
       <p class="proj-label">Nexflow</p>
       <h3 class="proj-name">Nexflow —<br></h3>
-      <p class="proj-desc">just a regular website.</p>
+      <p class="proj-desc">Site web de présentation classique.</p>
     </a>
   </div>
 </template>
@@ -149,7 +143,7 @@
 <template id="tpl-contact">
   <div class="s-title-wrap">
     <h2 class="s-title">CONTACT</h2>
-    <p class="s-subtitle">GET IN TOUCH &nbsp;·&nbsp; LET'S CONNECT</p>
+    <p class="s-subtitle">ENTRER EN CONTACT &nbsp;·&nbsp; COLLABORONS</p>
   </div>
   <div class="s-content contact-content">
     <a href="https://github.com/alexander-sudo-rgb" target="_blank" class="contact-row">
@@ -165,8 +159,8 @@
       <span class="contact-val">alexander.salazar-correa-elisei@epitech.eu</span>
     </a>
     <a href="cv/Resume.pdf" download class="contact-row">
-      <span class="contact-label">RESUME</span>
-      <span class="contact-val">Download PDF &nbsp;↓</span>
+      <span class="contact-label">CV (PDF)</span>
+      <span class="contact-val">Télécharger le PDF &nbsp;↓</span>
     </a>
   </div>
 </template>
